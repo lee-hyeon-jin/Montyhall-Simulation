@@ -11,16 +11,25 @@
             justify-content: space-around;
             align-items: center;
         }
-        .chart-container canvas {
+        .chart-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .chart-item canvas {
             max-width: 400px;
             max-height: 400px;
             margin: 10px;
+        }
+        .chart-title {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <h1>Welcome to the Monty Hall Simulation</h1>
-
+    
+    <h2>몬티홀 게임</h2>
     <form action="switchdoor" method="post">
         <p>문을 고르세요:</p>
         <input type="radio" id="door1" name="door" value="1" required>
@@ -29,25 +38,34 @@
         <label for="door2">2번 문</label><br>
         <input type="radio" id="door3" name="door" value="3" required>
         <label for="door3">3번 문</label><br><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit"><br>
     </form>
 
-    <h2>게임 결과 통계</h2>
+    <h2>몬티홀 시뮬레이션</h2>
     <form action="simulate" method="post">
         <label for="numRuns">시뮬레이션 횟수:</label>
         <input type="number" id="numRuns" name="numRuns" min="1" required>
+        <br>
+        <input type="radio" id="simulateChange" name="simulationType" value="change" required>
+        <label for="simulateChange">문 변경 시</label><br>
+        <input type="radio" id="simulateKeep" name="simulationType" value="keep" required>
+        <label for="simulateKeep">문 유지 시</label><br><br>
         <input type="submit" value="Run Simulation">
     </form>
 
     <div class="chart-container">
         <!-- 게임 결과 통계 그래프 -->
-        <div>
-            <h2>게임 결과 통계</h2>
+        <div class="chart-item">
+            <div class="chart-title">
+                <h2>게임 결과 통계</h2>
+            </div>
             <canvas id="resultChart" width="300" height="300"></canvas>
         </div>
         <!-- 시뮬레이션 결과 그래프 -->
-        <div>
-            <h2>시뮬레이션 결과 통계</h2>
+        <div class="chart-item">
+            <div class="chart-title">
+                <h2>시뮬레이션 결과 통계</h2>
+            </div>
             <canvas id="simulationChart" width="300" height="300"></canvas>
         </div>
     </div>
@@ -84,7 +102,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Monty Hall 게임 결과 통계'
+                        text: '게임 결과 통계'
                     }
                 }
             }
