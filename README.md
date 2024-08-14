@@ -9,4 +9,4 @@
 tomcat : 9.0.91
 
 
-png 파일은 https://pixabay.com/ko/에서 다운로드 받았음.
+png 파일은 https://pixabay.com/ko/ 에서 다운로드 받았음.
