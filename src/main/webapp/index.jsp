@@ -24,6 +24,16 @@
         .chart-title {
             margin-bottom: 10px;
         }
+        .door-container {
+            text-align: center;
+            margin: 20px;
+        }
+        .door-container img {
+            width: 100px;
+            height: 150px;
+            margin: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -32,12 +42,14 @@
     <h2>몬티홀 게임</h2>
     <form action="switchdoor" method="post">
         <p>문을 고르세요:</p>
-        <input type="radio" id="door1" name="door" value="1" required>
-        <label for="door1">1번 문</label><br>
-        <input type="radio" id="door2" name="door" value="2" required>
-        <label for="door2">2번 문</label><br>
-        <input type="radio" id="door3" name="door" value="3" required>
-        <label for="door3">3번 문</label><br><br>
+        <div class="door-container">
+            <input type="radio" id="door1" name="door" value="1" required>
+            <label for="door1"><img src="images/door.png" alt="Door 1"></label>
+            <input type="radio" id="door2" name="door" value="2" required>
+            <label for="door2"><img src="images/door.png" alt="Door 2"></label>
+            <input type="radio" id="door3" name="door" value="3" required>
+            <label for="door3"><img src="images/door.png" alt="Door 3"></label>
+        </div>
         <input type="submit" value="Submit"><br>
     </form>
 
