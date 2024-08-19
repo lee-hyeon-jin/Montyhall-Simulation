@@ -12,7 +12,18 @@ public class SimulateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int numRuns = Integer.parseInt(request.getParameter("numRuns"));
+        String numRunsStr = request.getParameter("numRuns");
+        int numRuns;
+
+        try {
+            // 입력된 값이 .0을 가진 소수일 경우 정수로 변환
+            double numRunsDouble = Double.parseDouble(numRunsStr);
+            numRuns = (int) Math.floor(numRunsDouble);
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid input for number of runs.");
+            return;
+        }
+
         String simulationType = request.getParameter("simulationType");
 
         int winCount = 0;
@@ -48,7 +59,7 @@ public class SimulateServlet extends HttpServlet {
         // 세션에 결과 저장
         request.getSession().setAttribute("simulationWinCount", winCount);
         request.getSession().setAttribute("simulationLoseCount", loseCount);
-        
+
         // 결과 페이지로 리디렉션
         response.sendRedirect("index.jsp");
     }

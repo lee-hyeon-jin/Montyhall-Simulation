@@ -56,7 +56,8 @@
     <h2>몬티홀 시뮬레이션</h2>
     <form action="simulate" method="post">
         <label for="numRuns">시뮬레이션 횟수:</label>
-        <input type="number" id="numRuns" name="numRuns" min="1" required>
+        <!-- step = "1"을 주어 5.0같이 소수를 입력할 시 넘어가지 않게 함 -->
+        <input type="number" id="numRuns" name="numRuns" min="1" step="1" required>	
         <br>
         <input type="radio" id="simulateChange" name="simulationType" value="change" required>
         <label for="simulateChange">문 변경 시</label><br>
@@ -83,6 +84,7 @@
     </div>
 
     <script>
+    
         // 게임 결과 통계 그래프
         var ctx1 = document.getElementById('resultChart').getContext('2d');
         new Chart(ctx1, {
@@ -156,6 +158,8 @@
                 }
             }
         });
+        
+        
     </script>
 </body>
 </html>
