@@ -19,7 +19,7 @@
         .door-box {
             width: 100px;
             height: 150px;
-            margin: 0 10px;
+            margin: 0 25px;
             position: relative;
             border: 2px solid #000;
         }
