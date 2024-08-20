@@ -10,3 +10,6 @@ tomcat : 9.0.91
 
 
 png 파일 출처 : https://pixabay.com/ko/
+
+
+간단한 예제라 controller.java와 service.java를 없애도 원활하게 돌아감
