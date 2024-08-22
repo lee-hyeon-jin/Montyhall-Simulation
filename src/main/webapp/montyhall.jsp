@@ -88,7 +88,6 @@
     
     <a href="index.jsp">Play Again</a>
 
-    <!-- JavaScript to handle the game result -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var carPosition = "<%= request.getAttribute("carPosition") %>";

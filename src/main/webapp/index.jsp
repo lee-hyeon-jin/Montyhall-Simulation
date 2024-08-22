@@ -83,7 +83,6 @@
 <body>
     <div class="progress-bar" id="progressBar"></div> <!-- Progress Bar -->
     <div class="container" id="content"> <!-- Content Start -->
-        <!-- 모든 기존 내용이 이곳에 포함됩니다 -->
         <h1>Welcome to the Monty Hall Simulation</h1>
         
         <h2>몬티홀 게임</h2>
@@ -127,6 +126,7 @@
         </form>
 
         <div class="chart-container">
+        	<!-- 게임 결과 통계 그래프 -->
             <div class="chart-item">
                 <div class="chart-title">
                     <h2>게임 결과 통계</h2>
@@ -134,6 +134,7 @@
                 <canvas id="resultChart" width="300" height="300"></canvas>
             </div>
             <div class="chart-item">
+            	<!-- 시뮬레이션 결과 통계 그래프 -->
                 <div class="chart-title">
                     <h2>시뮬레이션 결과 통계</h2>
                 </div>
@@ -154,7 +155,6 @@
             progressBar.style.width = progress + "%";
         };
 
-        // Chart.js 스크립트 부분은 이전 코드와 동일
         // 게임 결과 통계 그래프
         var ctx1 = document.getElementById('resultChart').getContext('2d');
         new Chart(ctx1, {

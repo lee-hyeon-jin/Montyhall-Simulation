@@ -97,14 +97,13 @@
 	    </form>
 	</div>
 
-    <!-- JavaScript to show the goat -->
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         var revealedDoor = "<%= request.getAttribute("revealedDoor") %>";
         var initialChoice = "<%= request.getAttribute("initialChoice") %>";
         var remainingDoor = "<%= request.getAttribute("remainingDoor") %>";
 
-        // Show the goat on the revealed door
+        // 공개 문에 염소 보여주기
         if (revealedDoor) {
             var goat = document.getElementById('goat' + revealedDoor);
             if (goat) {
@@ -112,19 +111,19 @@
             }
         }
 
-        // Handle door image clicks
+        // 이미지 클릭을 통한 옵션 선택 기능
         document.querySelectorAll('.door-box').forEach(function(doorBox) {
             doorBox.addEventListener('click', function() {
                 var doorId = doorBox.id;
                 if (doorId !== revealedDoor) {
                     if (doorId === remainingDoor) {
-                        // Initial choice door clicked, select second option
+                        // Initial choice 번째의 문을 클릭하면, "바꾼다" 옵션 선택
                         document.getElementById('switch').checked = true;
                     } else {
-                        // Remaining door clicked, select first option
+                        // Remaining door 번째의 문을 클릭하면, "바꾸지 않는다" 옵션 선택
                         document.getElementById('stay').checked = true;
                     }
-                    // Trigger the submit button click
+                    // 제출 버튼 클릭 트리거
                     document.getElementById('submitButton').click();
                 }
             });
