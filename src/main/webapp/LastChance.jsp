@@ -41,9 +41,6 @@
             display: flex;
             justify-content: flex-end;
         }
-        .central-align {
-            text-align: center; /* 중앙 정렬 */
-        }
         .choice-form {
             display: flex;
             flex-direction: column;
