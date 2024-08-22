@@ -68,10 +68,22 @@
             text-align: right; /* 오른쪽 정렬 */
             padding-right: 200px; /* 오른쪽 여백 */
         }
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: #4caf50;
+            z-index: 1000;	/* 요소 쌓임 순서 정의. 값이 클수록 앞에 쌓임 */
+            transition: width 0.2s;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="progress-bar" id="progressBar"></div> <!-- Progress Bar -->
+    <div class="container" id="content"> <!-- Content Start -->
+        <!-- 모든 기존 내용이 이곳에 포함됩니다 -->
         <h1>Welcome to the Monty Hall Simulation</h1>
         
         <h2>몬티홀 게임</h2>
@@ -85,11 +97,11 @@
                 <input type="radio" id="door3" name="door" value="3" required>
                 <label for="door3"><img src="images/door.png" alt="Door 3"></label>
             </div>
-            <!-- 오른쪽 정렬할 부분을 버튼 폼으로 감싸기 -->
             <div class="button-form-container">
-                    <input type="submit" value="Submit">
+                <input type="submit" value="Submit">
             </div>
         </form>
+        <br>
 
         <h2>몬티홀 시뮬레이션</h2>
         <form action="simulate" method="post">
@@ -98,32 +110,29 @@
                 <input type="number" id="numRuns" name="numRuns" min="1" step="1" required>
             </div>
             <br>
-	        <div class="simulation-options simulation-form">
-	            <!-- flex를 사용해 라디오 버튼과 라벨을 나란히 배치 -->
-	            <div style="display: flex; align-items: center;">
-	                <input type="radio" id="simulateChange" name="simulationType" value="change" required>
-	                <label for="simulateChange" style="margin-left: 5px;">문 변경 시</label>
-	            </div>
-	            <div style="display: flex; align-items: center; margin-top: 10px;">
-	                <input type="radio" id="simulateKeep" name="simulationType" value="keep" required>
-	                <label for="simulateKeep" style="margin-left: 5px;">문 유지 시</label>
-	            </div>
-	        </div>
+            <div class="simulation-options simulation-form">
+                <div style="display: flex; align-items: center;">
+                    <input type="radio" id="simulateChange" name="simulationType" value="change" required>
+                    <label for="simulateChange" style="margin-left: 5px;">문 변경 시</label>
+                </div>
+                <div style="display: flex; align-items: center; margin-top: 10px;">
+                    <input type="radio" id="simulateKeep" name="simulationType" value="keep" required>
+                    <label for="simulateKeep" style="margin-left: 5px;">문 유지 시</label>
+                </div>
+            </div>
             <br>
             <div class="button-form-container">
-                    <input type="submit" value="Run Simulation">
+                <input type="submit" value="Run Simulation">
             </div>
         </form>
 
         <div class="chart-container">
-            <!-- 게임 결과 통계 그래프 -->
             <div class="chart-item">
                 <div class="chart-title">
                     <h2>게임 결과 통계</h2>
                 </div>
                 <canvas id="resultChart" width="300" height="300"></canvas>
             </div>
-            <!-- 시뮬레이션 결과 그래프 -->
             <div class="chart-item">
                 <div class="chart-title">
                     <h2>시뮬레이션 결과 통계</h2>
@@ -131,9 +140,21 @@
                 <canvas id="simulationChart" width="300" height="300"></canvas>
             </div>
         </div>
-    </div>
+    </div> <!-- Content End -->
 
     <script>
+        // 프로그레스 바 업데이트
+        window.onscroll = function() {
+            var content = document.getElementById('content');
+            var progressBar = document.getElementById('progressBar');
+            var contentHeight = content.scrollHeight - window.innerHeight;
+            var scrollPosition = window.scrollY;
+
+            var progress = (scrollPosition / contentHeight) * 100;
+            progressBar.style.width = progress + "%";
+        };
+
+        // Chart.js 스크립트 부분은 이전 코드와 동일
         // 게임 결과 통계 그래프
         var ctx1 = document.getElementById('resultChart').getContext('2d');
         new Chart(ctx1, {
