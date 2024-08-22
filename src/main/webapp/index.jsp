@@ -78,13 +78,30 @@
             z-index: 1000;	/* 요소 쌓임 순서 정의. 값이 클수록 앞에 쌓임 */
             transition: width 0.2s;
         }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            z-index: 1000;
+            padding: 20px 0;
+            text-align: center;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div> <!-- Progress Bar -->
-    <div class="container" id="content"> <!-- Content Start -->
+    <div class="header" id="header">
         <h1>Welcome to the Monty Hall Simulation</h1>
-        
+    </div>
+    <br><br><br><br><br><br><br>
+    <div class="container" id="content"> <!-- Content Start -->    
         <h2>몬티홀 게임</h2>
         <form action="switchdoor" method="post">
             <p>문을 고르세요:</p>
@@ -144,8 +161,19 @@
     </div> <!-- Content End -->
 
     <script>
-        // 프로그레스 바 업데이트
         window.onscroll = function() {
+        	// 스크롤에 따른 상단 타이틀 투명화 동적옵션
+            var header = document.getElementById('header');
+            var scrollPosition = window.scrollY;
+
+            // 스크롤 위치가 30px 이상이면 헤더가 사라지게 함
+            if (scrollPosition > 30) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            
+         	// 프로그레스 바 업데이트
             var content = document.getElementById('content');
             var progressBar = document.getElementById('progressBar');
             var contentHeight = content.scrollHeight - window.innerHeight;
